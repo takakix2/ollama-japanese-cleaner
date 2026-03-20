@@ -74,14 +74,47 @@ const RULES = [
   // 単一英字 + スペース + 数字: 「v 1」→「v1」
   { pattern: /\b([a-zA-Z]) (\d)/g, replacement: '$1$2', phase: 1 },
 
+
   // Phase 7: 日本語句読点・括弧周りのスペース除去
+  // CJK の後に閉じ系（句読点・閉じ括弧）
   {
-    pattern: /([\u3000-\u30FF\u3400-\u4DBF\u4E00-\u9FFF]) ([、。，．！？：；）」』】〉》])/g,
+    pattern: /([\u3000-\u30FF\u3400-\u4DBF\u4E00-\u9FFF\uFF65-\uFF9F]) ([、。，．！？：；）」』】〉》\uFF09\uFF01\uFF1A\uFF1B])/g,
     replacement: '$1$2',
     phase: 1,
   },
+  // 開き系（開き括弧）の後に CJK
   {
-    pattern: /([（「『【〈《]) ([\u3000-\u30FF\u3400-\u4DBF\u4E00-\u9FFF])/g,
+    pattern: /([（「『【〈《\uFF08]) ([\u3000-\u30FF\u3400-\u4DBF\u4E00-\u9FFF\uFF65-\uFF9F])/g,
+    replacement: '$1$2',
+    phase: 1,
+  },
+  // CJK の後に開き括弧
+  {
+    pattern: /([\u3000-\u30FF\u3400-\u4DBF\u4E00-\u9FFF\uFF65-\uFF9F]) ([（「『【〈《\uFF08])/g,
+    replacement: '$1$2',
+    phase: 1,
+  },
+  // 閉じ括弧の後に CJK
+  {
+    pattern: /([）」』】〉》\uFF09]) ([\u3000-\u30FF\u3400-\u4DBF\u4E00-\u9FFF\uFF65-\uFF9F])/g,
+    replacement: '$1$2',
+    phase: 1,
+  },
+  // CJK + 半角コロン/セミコロン
+  {
+    pattern: /([\u3000-\u30FF\u3400-\u4DBF\u4E00-\u9FFF\uFF65-\uFF9F]) ([:;])/g,
+    replacement: '$1$2',
+    phase: 1,
+  },
+  // ASCII/数字 + 全角閉じ括弧: 「md ）」→「md）」
+  {
+    pattern: /([a-zA-Z0-9]) ([）」』】〉》\uFF09])/g,
+    replacement: '$1$2',
+    phase: 1,
+  },
+  // 全角開き括弧 + ASCII/数字: 「（ file」→「（file」
+  {
+    pattern: /([（「『【〈《\uFF08]) ([a-zA-Z0-9])/g,
     replacement: '$1$2',
     phase: 1,
   },
