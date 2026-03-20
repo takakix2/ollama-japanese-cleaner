@@ -104,9 +104,15 @@ const RULES = [
     replacement: '$1$2',
     phase: 1,
   },
-  // CJK + 半角コロン/セミコロン
+  // CJK + 半角/全角コロン・セミコロン
   {
-    pattern: /([\u3000-\u30FF\u3400-\u4DBF\u4E00-\u9FFF\uFF65-\uFF9F]) ([:;])/g,
+    pattern: /([\u3000-\u30FF\u3400-\u4DBF\u4E00-\u9FFF\uFF65-\uFF9F]) ([:;\uFF1A\uFF1B])/g,
+    replacement: '$1$2',
+    phase: 1,
+  },
+  // 全角コロン・セミコロン + CJK
+  {
+    pattern: /([\uFF1A\uFF1B]) ([\u3000-\u30FF\u3400-\u4DBF\u4E00-\u9FFF\uFF65-\uFF9F])/g,
     replacement: '$1$2',
     phase: 1,
   },
