@@ -17,7 +17,7 @@
  *   const { cleanOllamaJapanese } = require('./ollama-japanese-cleaner.js');
  * 
  * @license MIT
- * @version 1.0.0
+ * @version 1.1.0
  */
 
 // ── Unicode 範囲定数 ──────────────────────────────────
