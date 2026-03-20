@@ -69,6 +69,10 @@ const RULES = [
   { pattern: /\b([a-zA-Z]{1,2}) ([a-zA-Z]{3,})\b/g, replacement: '$1$2', phase: 1, cjkOnly: true },
   // 3文字以上 + スペース + 1-2文字: 「PROPOS AL」→「PROPOSAL」
   { pattern: /\b([a-zA-Z]{3,}) ([a-zA-Z]{1,2})\b/g, replacement: '$1$2', phase: 1, cjkOnly: true },
+  // 2文字 + スペース + 2文字: 「eB PF」→「eBPF」
+  { pattern: /\b([a-zA-Z]{2}) ([a-zA-Z]{2})\b/g, replacement: '$1$2', phase: 1, cjkOnly: true },
+  // 1文字 + スペース + 2文字: 「e BP」→「eBP」
+  { pattern: /\b([a-zA-Z]) ([a-zA-Z]{2})\b/g, replacement: '$1$2', phase: 1, cjkOnly: true },
   // アンダースコア直後の断片: 「_PRI ORITY」→「_PRIORITY」
   { pattern: /_([a-zA-Z]+) ([a-zA-Z]+)/g, replacement: '_$1$2', phase: 1, cjkOnly: true },
   // 単一英字 + スペース + 数字: 「v 1」→「v1」
