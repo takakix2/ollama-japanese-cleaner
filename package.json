@@ -1,0 +1,29 @@
+{
+  "name": "ollama-japanese-cleaner",
+  "version": "1.0.0",
+  "description": "Clean tokenization artifacts from Ollama/LLM Japanese text output",
+  "main": "ollama-japanese-cleaner.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "keywords": [
+    "ollama",
+    "japanese",
+    "llm",
+    "tokenizer",
+    "text-cleaning",
+    "nlp",
+    "cjk",
+    "rag"
+  ],
+  "author": "takaki2",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/takaki2/ollama-japanese-cleaner.git"
+  },
+  "bugs": {
+    "url": "https://github.com/takaki2/ollama-japanese-cleaner/issues"
+  },
+  "homepage": "https://github.com/takaki2/ollama-japanese-cleaner#readme"
+}
